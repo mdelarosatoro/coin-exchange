@@ -1,0 +1,7 @@
+.coin-row {
+}
+
+.coin-row > td {
+    border: 1px solid white;
+    width: 120px;
+}
