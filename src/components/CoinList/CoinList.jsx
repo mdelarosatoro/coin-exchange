@@ -23,7 +23,9 @@ export default class CoinList extends Component {
                 key={ticker}
                 name={name}
                 ticker={ticker}
-                price={price} />)}
+                price={price}
+                handleRefresh={this.props.handleRefresh}
+                />)}
             </tbody>
         </CoinTable>
         )

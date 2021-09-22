@@ -21,9 +21,6 @@ const Td = styled.td`
 export default class Coin extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            price: this.props.price,
-        }
         this.handleClick = this.handleClick.bind(this);
     }
 
@@ -41,10 +38,11 @@ export default class Coin extends React.Component {
 
     handleClick(e) {
         e.preventDefault();
-        const randomPercentage = 0.995 + Math.random() * 0.01;
-        this.setState(oldState => {
-            return { price: Math.floor((oldState.price * randomPercentage) * 100) / 100 }
-        })
+        this.props.handleRefresh(this.props.ticker);
+        // const randomPercentage = 0.995 + Math.random() * 0.01;
+        // this.setState(oldState => {
+        //     return { price: Math.floor((oldState.price * randomPercentage) * 100) / 100 }
+        // })
     }
                 
     render(){
@@ -52,7 +50,7 @@ export default class Coin extends React.Component {
             <tr>
             <Td>{this.props.name}</Td>
             <Td>{this.props.ticker}</Td>
-            <Td>${this.state.price}</Td>
+            <Td>${this.props.price}</Td>
             <Td>
                 <form action="#" method="POST">
                     <button onClick={this.handleClick}>Refresh</button>
