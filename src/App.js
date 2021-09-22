@@ -1,36 +1,69 @@
 import React from 'react'
-import logo from './logo.svg';
-import './App.css';
-import Coin from './components/Coin/Coin';
 import AccountBalance from './components/AccountBalance/AccountBalance';
+import CoinList from './components/CoinList/CoinList';
+import Header from './components/Header/Header';
+import styled from 'styled-components';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>Coin Exchange</h1>
-      </header>
-      <div className="App-body">
-        <AccountBalance amount={10000} />
-        <table className="coin-table">
-          <thead>
-            <tr>
-              <td>Name</td>
-              <td>Ticker</td>
-              <td>Price</td>
-            </tr>
-          </thead>
-          <tbody>
-            <Coin name="Bitcoin" ticker="BTC" price={50000} />
-            <Coin name="Ethereum" ticker="ETH" price={3600} />
-            <Coin name="Tether" ticker="USDT" price={1.0} />
-            <Coin name="Ripple" ticker="XRP" price={1.80} />
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
+const AppRoot = styled.div`
+  text-align: center;
+`;
+
+const AppBody = styled.div`
+  background-color: darkcyan;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+`;
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      balance: 10000,
+      coinData: [
+        {
+          name: "Bitcoin",
+          ticker: "BTC",
+          price: 47000
+        },
+        {
+          name: "Ethereum",
+          ticker: "ETH",
+          price: 3200
+        },
+        {
+          name: "Tether",
+          ticker: "USDT",
+          price: 1
+        },
+        {
+          name: "Ripple",
+          ticker: "XRP",
+          price: 1.8
+        },
+        {
+          name: "Drip Network",
+          ticker: "DRIP",
+          price: 8
+        }
+      ]
+    }
+  }
+
+  render () {
+    return (
+    <AppRoot>
+      <Header />
+      <AppBody>
+        <AccountBalance amount={this.state.balance} />
+        <CoinList coinData={this.state.coinData} />
+      </AppBody>
+    </AppRoot>
+    );
+  }
+
 }
 
 export default App;
