@@ -12,10 +12,23 @@ const Section = styled.section`
 `;
 
 export default class AccountBalance extends Component {
+    constructor(props) {
+        super(props);
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick(e) {
+        e.preventDefault();
+        this.props.toggleBalance();
+    }
+
     render() {
+        const buttonText = this.props.showBalance ? 'Hide Balance' : 'Show Balance';
+
         return (
             <Section className="account-balance">
-                <p>Account Balance: <span>${this.props.amount}</span></p>
+                {this.props.showBalance && <p>Account Balance: <span>${this.props.amount}</span></p>}
+                <button onClick={this.handleClick}>{buttonText}</button>
             </Section>
         );
     }
