@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -11,27 +11,19 @@ const Section = styled.section`
     box-shadow: 1px 1px 1px 0.8px;
 `;
 
-export default class AccountBalance extends Component {
-    constructor(props) {
-        super(props);
-        this.handleClick = this.handleClick.bind(this);
-    }
-
-    handleClick(e) {
+export default function AccountBalance(props) {
+    const handleClick = (e) => {
         e.preventDefault();
-        this.props.toggleBalance();
+        props.toggleBalance();
     }
+    const buttonText = props.showBalance ? 'Hide Balance' : 'Show Balance';
 
-    render() {
-        const buttonText = this.props.showBalance ? 'Hide Balance' : 'Show Balance';
-
-        return (
-            <Section className="account-balance">
-                {this.props.showBalance && <p>Account Balance: <span>${this.props.amount}</span></p>}
-                <button onClick={this.handleClick}>{buttonText}</button>
-            </Section>
-        );
-    }
+    return (
+        <Section className="account-balance">
+            {props.showBalance && <p>Account Balance: <span>${props.amount}</span></p>}
+            <button onClick={handleClick}>{buttonText}</button>
+        </Section>
+    );
 }
 
 

@@ -7,31 +7,30 @@ const Td = styled.td`
     width: 120px;
 `;
 
-export default class Coin extends React.Component {
+export default function Coin(props) {
 
-    handleClick = (e) => {
+    const handleClick = (e) => {
         e.preventDefault();
-        this.props.handleRefresh(this.props.ticker);
+        props.handleRefresh(props.id);
     }
-                
-    render(){
-        return (
-            <tr>
-            <Td>{this.props.name}</Td>
-            <Td>{this.props.ticker}</Td>
-            <Td>${this.props.price}</Td>
-            {this.props.showBalance && <Td>{this.props.balance}</Td>}
-            <Td>
-                <form action="#" method="POST">
-                    <button onClick={this.handleClick}>Refresh</button>
-                </form>
-            </Td>
-        </tr>
-        );
-    }
+
+    return (
+        <tr>
+        <Td>{props.name}</Td>
+        <Td>{props.ticker}</Td>
+        <Td>${props.price}</Td>
+        {props.showBalance && <Td>{props.balance}</Td>}
+        <Td>
+            <form action="#" method="POST">
+                <button onClick={handleClick}>Refresh</button>
+            </form>
+        </Td>
+    </tr>
+    );
 }
 
 Coin.propTypes = {
+    id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     ticker: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
